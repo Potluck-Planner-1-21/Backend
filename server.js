@@ -1,10 +1,12 @@
 const express = require("express");
 const cors = require("cors");
+// const petsRouter = require("./pets/pets-router");
 
 const server = express();
 
 server.use(cors());
 server.use(express.json());
+// server.use('/pets', petsRouter);
 
 server.get('/', (req, res) => {
 	res.json({
