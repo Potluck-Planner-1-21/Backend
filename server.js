@@ -1,12 +1,12 @@
 const express = require("express");
 const cors = require("cors");
-// const petsRouter = require("./pets/pets-router");
+const usersRouter = require("./users/users-router");
 
 const server = express();
 
 server.use(cors());
 server.use(express.json());
-// server.use('/pets', petsRouter);
+server.use('/users', usersRouter);
 
 server.get('/', (req, res) => {
 	res.json({
