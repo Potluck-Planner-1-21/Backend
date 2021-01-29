@@ -78,4 +78,8 @@ router.post('/login', async (req, res, next) => {
       }
 });
 
+router.get('/', (req, res) => {
+  Auth.find().then(res => res.status(200).json(res)).catch(err => res.status(500).json({message: 'broken!'}))
+})
+
 module.exports = router;
