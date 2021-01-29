@@ -3,6 +3,11 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Auth = require('./users-model');
 
+
+router.get('/', (req, res) => {
+  Auth.find().then(res => res.status(200).json(res)).catch(err => res.status(500).json({message: 'broken!'}))
+})
+
 router.post('/register', async (req, res, next) => {
       try {
         const name = req.body.name;
@@ -77,9 +82,5 @@ router.post('/login', async (req, res, next) => {
         next(err);
       }
 });
-
-router.get('/', (req, res) => {
-  Auth.find().then(res => res.status(200).json(res)).catch(err => res.status(500).json({message: 'broken!'}))
-})
 
 module.exports = router;
