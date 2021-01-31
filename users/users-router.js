@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Auth = require('./users-model');
 
+
 router.post('/register', async (req, res, next) => {
       try {
         const name = req.body.name;
@@ -60,7 +61,7 @@ router.post('/login', async (req, res, next) => {
             message: 'invalid credentials',
           })
         }
-        
+
         const token = jwt.sign({
           userId: user.id,
         }, process.env.JWT_SECRET);
