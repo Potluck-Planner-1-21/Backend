@@ -5,7 +5,7 @@ function find() {
 }
 
 function findByUsername(username) {
-    return db.select('id', 'name', 'email').from('users').where('name', username);
+    return db.select('id', 'name', 'password').from('users').where('name', username);
 }
 
 async function add(user) {
