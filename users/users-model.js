@@ -14,7 +14,7 @@ async function add(user) {
 }
 
 function findById(id) {
-    return db.select('*').from('users').where('id', id);
+    return db.select('id', 'name', 'email').from('users').where('id', id);
 }
 
 module.exports = {
