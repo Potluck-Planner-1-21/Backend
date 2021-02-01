@@ -23,6 +23,16 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
+router.get('/:userId/events', async (req, res, next) => {
+  try {
+    const events = await Auth.findUserEvents(req.params.userId);
+    res.json(events);
+  }
+  catch (err) {
+    next(err);
+  }
+})
+
 router.post('/register', async (req, res, next) => {
       try {
         const name = req.body.name;
