@@ -17,9 +17,14 @@ function findById(id) {
     return db.select('id', 'name', 'email').from('users').where('id', id);
 }
 
+function findUserEvents(userId) {
+    return db.select('name', 'date', 'time', 'location').from('potluck').where('organizer_id', userId);
+}
+
 module.exports = {
     find,
     findByUsername,
     add,
     findById,
+    findUserEvents,
 }
