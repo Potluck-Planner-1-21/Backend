@@ -14,7 +14,11 @@ async function add(user) {
 }
 
 function findById(id) {
-    return db.select('*').from('users').where('id', id);
+    return db.select('id', 'name', 'email').from('users').where('id', id);
+}
+
+function findUserEvents(userId) {
+    return db.select('name', 'date', 'time', 'location').from('potluck').where('organizer_id', userId);
 }
 
 module.exports = {
@@ -22,4 +26,5 @@ module.exports = {
     findByUsername,
     add,
     findById,
+    findUserEvents,
 }

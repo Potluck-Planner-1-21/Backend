@@ -3,6 +3,35 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Auth = require('./users-model');
 
+router.get('/', async (req, res, next) => {
+  try {
+    const users = await Auth.find();
+    res.json(users);
+  }
+  catch (err) {
+    next(err);
+  }
+})
+
+router.get('/:id', async (req, res, next) => {
+  try {
+    const user = await Auth.findById(req.params.id);
+    res.json(user);
+  }
+  catch (err) {
+    next(err);
+  }
+})
+
+router.get('/:userId/events', async (req, res, next) => {
+  try {
+    const events = await Auth.findUserEvents(req.params.userId);
+    res.json(events);
+  }
+  catch (err) {
+    next(err);
+  }
+})
 
 router.post('/register', async (req, res, next) => {
       try {
