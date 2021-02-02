@@ -16,13 +16,17 @@ function findById(id) {
         .where('p.id', id);
 }
 
-// function findEventItems(eventId) {
-//     return db.select('name', 'date', 'time', 'location').from('potluck').where('organizer_id', eventId);
-// }
+function findEventItems(eventId) {
+    return db('potluck_items as pi')
+    .innerJoin('items as i', 'pi.item_id', 'i.id')
+    .innerJoin('potluck as p', 'pi.potluck_id', 'p.id')
+    .select('p.name as event_name', 'i.name as item_name')
+    .where('pi.potluck_id', eventId);
+}
 
 module.exports = {
     find,
     add,
     findById,
-    // findEventItems,
+    findEventItems,
 }
