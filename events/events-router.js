@@ -23,6 +23,16 @@ router.get('/:id', async (req, res, next) => {
     }
 })
 
+router.get('/:id/items', async (req, res, next) => {
+    try {
+        const items = await Events.findEventItems(req.params.id);
+        res.json(items);
+    }
+    catch (err) { 
+        next(err); 
+    }
+})
+
 router.post('/', async (req, res, next) => {
     try {
         const newEvent = await Events.add(req.body);
