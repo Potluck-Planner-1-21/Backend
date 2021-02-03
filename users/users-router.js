@@ -108,4 +108,16 @@ router.post('/login', async (req, res, next) => {
       }
 });
 
+router.put('/:id', async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const changes = req.body;
+    const updatedUser = await Auth.update(id, changes);
+    res.json(updatedUser)
+  }
+  catch (err) {
+    next(err);
+  }
+})
+
 module.exports = router;

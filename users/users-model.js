@@ -21,10 +21,15 @@ function findUserEvents(userId) {
     return db.select('name', 'date', 'time', 'location').from('potluck').where('organizer_id', userId);
 }
 
+function update(id, changes) {
+    return db.select('*').from('users').where('id', id).update(changes);
+}
+
 module.exports = {
     find,
     findByUsername,
     add,
     findById,
     findUserEvents,
+    update,
 }
