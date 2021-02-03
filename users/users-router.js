@@ -112,6 +112,9 @@ router.put('/:id', async (req, res, next) => {
   try {
     const id = req.params.id;
     const changes = req.body;
+    if(changes.password) {
+      changes.password = await bcrypt.hash(changes.password, 14)
+    }
     const updatedUser = await Auth.update(id, changes);
     res.json(updatedUser)
   }
