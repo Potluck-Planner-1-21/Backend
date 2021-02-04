@@ -123,4 +123,16 @@ router.put('/:id', async (req, res, next) => {
   }
 })
 
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const deleted = Auth.remove(req.params.id);
+    res.json({
+      message: 'deleted',
+    })
+  }
+  catch (err) {
+    next(err);
+  }
+})
+
 module.exports = router;

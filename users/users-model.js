@@ -25,6 +25,10 @@ function update(id, changes) {
     return db.select('*').from('users').where('id', id).update(changes);
 }
 
+function remove(id) {
+    return db.select('*').from('users').where('id', id).del();
+}
+
 module.exports = {
     find,
     findByUsername,
@@ -32,4 +36,5 @@ module.exports = {
     findById,
     findUserEvents,
     update,
+    remove,
 }
