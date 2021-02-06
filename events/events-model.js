@@ -24,9 +24,29 @@ function findEventItems(eventId) {
     .where('pi.potluck_id', eventId);
 }
 
+async function addItemToEvent(eventId, itemId) {
+    await db.insert({potluck_id: eventId, item_id: itemId}).into('potluck_items');
+}
+
+function updateEvent(id, changes) {
+    return db.select('*').from('potluck').where('id', id).update(changes);
+}
+
+async function removeItemFromEvent(eventId, itemId) {
+    await db.select('*').from('potluck_items').where('potluck_id', eventId).andWhere('item_id', itemId).del();
+}
+
+function remove(id) {
+    return db.select('*').from('potluck').where('id', id).del();
+}
+
 module.exports = {
     find,
     add,
     findById,
     findEventItems,
+    addItemToEvent,
+    updateEvent,
+    removeItemFromEvent,
+    remove,
 }
