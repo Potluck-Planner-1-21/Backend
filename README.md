@@ -25,3 +25,9 @@ https://potluck-planner-1-21.herokuapp.com/
 | PUT | events/:id | edit an event (requires name (string), date (string), time (string), location (string), organizer_id (integer)) |
 | DELETE | events/:id | deleten event |
 | DELETE | events/:eventId/item/:itemId | remove item from event |
+
+# Items
+| Request | URL | Description |
+| ------- | --- | ----------- |
+| GET | items | get a list of items |
+| GET | items/:id | get a single item |
